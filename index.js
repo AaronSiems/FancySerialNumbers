@@ -141,8 +141,7 @@ function xyxyzzww() { //find this type of pattern (would look like 12123344 or 4
                     }
                 }
             }
-        }
-        if ((numStr.substring(1, 2) == numStr.substring(2, 3))) { //ww
+        } else if ((numStr.substring(1, 2) == numStr.substring(2, 3))) { //ww
             if ((numStr.substring(3, 4) == numStr.substring(4, 5))) { //zz
                 if ((numStr.substring(5, 6) == numStr.substring(7, 8))) { //xx
                     if ((numStr.substring(6, 7) == numStr.substring(8, 9))) { //yy
