@@ -99,7 +99,7 @@ function quadDoubles() { //find quad doubles ie 11112222
     var numStr = number.toString();
     resultsTxt();
     var resultsWrite = fs.createWriteStream('results.txt');
-    console.log('Calculating one of a kinds')
+    console.log('Calculating quad doubles')
     while (number<upper){
         number++
         numStr = number.toString();
@@ -110,7 +110,7 @@ function quadDoubles() { //find quad doubles ie 11112222
                         if ((numStr.substring(4, 5) == numStr.substring(3, 4))) {
                             if ((numStr.substring(4, 5) == numStr.substring(2, 3))) {
                                 total++;
-                                resultsWrite.write(numStr.substr(1) + '\n')
+                                resultsWrite.write(numStr.substr(1) + '\n');
                             }
                         }
                     }
@@ -123,6 +123,43 @@ function quadDoubles() { //find quad doubles ie 11112222
     console.log('Total possible amounts of quad doubles in a run = ' + total);
 }
 
-quadDoubles();
+function xyxyzzww() { //find this type of pattern (would look like 12123344 or 44331212)
+    clearResults();
+    var numStr = number.toString();
+    resultsTxt();
+    var resultsWrite = fs.createWriteStream('results.txt');
+    console.log('Calculating (xyxyzzww or zzwwxyxy)')
+    while (number<upper){
+        number++
+        numStr = number.toString();
+        if ((numStr.substring(8, 9) == numStr.substring(7, 8))) { //ww
+            if ((numStr.substring(6, 7) == numStr.substring(5, 6))) { //zz
+                if ((numStr.substring(1, 2) == numStr.substring(3, 4))) { //xx
+                    if ((numStr.substring(2, 3) == numStr.substring(4, 5))) { //yy
+                        total++;
+                        resultsWrite.write(numStr.substr(1) + '\n');
+                    }
+                }
+            }
+        }
+        if ((numStr.substring(1, 2) == numStr.substring(2, 3))) { //ww
+            if ((numStr.substring(3, 4) == numStr.substring(4, 5))) { //zz
+                if ((numStr.substring(5, 6) == numStr.substring(7, 8))) { //xx
+                    if ((numStr.substring(6, 7) == numStr.substring(8, 9))) { //yy
+                        total++;
+                        resultsWrite.write(numStr.substr(1) + '\n');
+                    }
+                }
+            }
+        }
+    }
+    resultsWrite.end;
+    console.log('Finished finding all (xyxyzzww or zzwwxyxy)');
+    console.log('Total possible amounts of (xyxyzzww or zzwwxyxy) in a run = ' + total);
+}
+
+
+xyxyzzww();
+//quadDoubles();
 //oneOfAKind();
 //quadDoubles();
