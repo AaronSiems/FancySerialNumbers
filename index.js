@@ -180,7 +180,30 @@ function trinary() { //find trinaries ie 34534534 (only three numbers)
 }
 
 
-trinary();
+//CAUTION this one also takes a bit.
+function binary() { //find binaries ie 12221221 (only two numbers)
+    clearResults();
+    var numStr = number.toString();
+    resultsTxt();
+    var resultsWrite = fs.createWriteStream('results.txt');
+    console.log('Calculating binaries')
+    while (number<upper){
+        number++
+        numStr = number.toString();
+        numArray = Array.from(numStr.substring(1,9)); //convert string to array
+        numArray = numArray.filter((x, i, numArray) => numArray.indexOf(x) == i); //replace array with just the unique numbers
+        if (numArray.length == 2) { //if there's only three numbers then record it
+            total++;
+            resultsWrite.write(numStr.substr(1) + '\n');
+        }
+    }
+    resultsWrite.end;
+    console.log('Finished finding all binaries');
+    console.log('Total possible amounts of binaries in a run = ' + total);
+}
+
+binary();
+//trinary();
 //xyxyzzww();
 //quadDoubles();
 //oneOfAKind();
