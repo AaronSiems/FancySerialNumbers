@@ -157,8 +157,31 @@ function xyxyzzww() { //find this type of pattern (would look like 12123344 or 4
     console.log('Total possible amounts of (xyxyzzww or zzwwxyxy) in a run = ' + total);
 }
 
+//CAUTION this one takes a bit to run
+function trinary() { //find trinaries ie 34534534 (only three numbers)
+    clearResults();
+    var numStr = number.toString();
+    resultsTxt();
+    var resultsWrite = fs.createWriteStream('results.txt');
+    console.log('Calculating trinaries')
+    while (number<upper){
+        number++
+        numStr = number.toString();
+        numArray = Array.from(numStr.substring(1,9)); //convert string to array
+        numArray = numArray.filter((x, i, numArray) => numArray.indexOf(x) == i); //replace array with just the unique numbers
+        if (numArray.length == 3) { //if there's only three numbers then record it
+            total++;
+            resultsWrite.write(numStr.substr(1) + '\n');
+        }
+    }
+    resultsWrite.end;
+    console.log('Finished finding all trinaries');
+    console.log('Total possible amounts of trinaries in a run = ' + total);
+}
 
-xyxyzzww();
+
+trinary();
+//xyxyzzww();
 //quadDoubles();
 //oneOfAKind();
 //quadDoubles();
