@@ -43,7 +43,7 @@ function quadDoubles(){ //find quad doubles ie 11223344
     var numStr = number.toString();
     resultsTxt();
     var resultsWrite = fs.createWriteStream('results.txt');
-    console.log('Calculating quad doubles')
+    console.log('Calculating quad doubles');
     while (number<upper){
         number++;
         numStr = number.toString();
@@ -68,7 +68,7 @@ function oneOfAKind(){ //find one of a kinds (a very bad way to figure them out)
     var numStr = number.toString();
     resultsTxt();
     var resultsWrite = fs.createWriteStream('results.txt');
-    console.log('Calculating one of a kinds')
+    console.log('Calculating one of a kinds');
     while (number<upper){
         number++
         numStr = number.toString();
@@ -99,7 +99,7 @@ function quadDoubles() { //find quad doubles ie 11112222
     var numStr = number.toString();
     resultsTxt();
     var resultsWrite = fs.createWriteStream('results.txt');
-    console.log('Calculating quad doubles')
+    console.log('Calculating quad doubles');
     while (number<upper){
         number++
         numStr = number.toString();
@@ -128,7 +128,7 @@ function xyxyzzww() { //find this type of pattern (would look like 12123344 or 4
     var numStr = number.toString();
     resultsTxt();
     var resultsWrite = fs.createWriteStream('results.txt');
-    console.log('Calculating (xyxyzzww or zzwwxyxy)')
+    console.log('Calculating (xyxyzzww or zzwwxyxy)');
     while (number<upper){
         number++
         numStr = number.toString();
@@ -163,7 +163,7 @@ function trinary() { //find trinaries ie 34534534 (only three numbers)
     var numStr = number.toString();
     resultsTxt();
     var resultsWrite = fs.createWriteStream('results.txt');
-    console.log('Calculating trinaries')
+    console.log('Calculating trinaries');
     while (number<upper){
         number++
         numStr = number.toString();
@@ -186,7 +186,7 @@ function binary() { //find binaries ie 12221221 (only two numbers)
     var numStr = number.toString();
     resultsTxt();
     var resultsWrite = fs.createWriteStream('results.txt');
-    console.log('Calculating binaries')
+    console.log('Calculating binaries');
     while (number<upper){
         number++
         numStr = number.toString();
@@ -202,7 +202,72 @@ function binary() { //find binaries ie 12221221 (only two numbers)
     console.log('Total possible amounts of binaries in a run = ' + total);
 }
 
-binary();
+function ascend()  {//numbers that only go up ie 11234789 or 33447789
+    clearResults();
+    var numStr = number.toString();
+    resultsTxt();
+    var resultsWrite = fs.createWriteStream('results.txt');
+    console.log('Calculating ascending numbers');
+    while (number<upper){
+        number++;
+        numStr = number.toString();
+        if ((numStr.substring(1, 2) <= numStr.substring(2, 3))) {
+            if ((numStr.substring(2, 3) <= numStr.substring(3, 4))) {
+                if ((numStr.substring(3, 4) <= numStr.substring(4, 5))) {
+                    if ((numStr.substring(4, 5) <= numStr.substring(5, 6))) {
+                        if ((numStr.substring(5, 6) <= numStr.substring(6, 7))) {
+                            if ((numStr.substring(6, 7) <= numStr.substring(7, 8))) {
+                                if ((numStr.substring(7, 8) <= numStr.substring(8, 9))) {
+                                    total++;
+                                    resultsWrite.write(numStr.substr(1) + '\n');
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }            
+    }
+    resultsWrite.end;
+    console.log('Finished finding all ascending serials');
+    console.log('Total possible amounts of ascending serials in a run = ' + total);
+}
+
+
+function descend()  {//numbers that only go down ie 99874321 or 99775540
+    clearResults();
+    var numStr = number.toString();
+    resultsTxt();
+    var resultsWrite = fs.createWriteStream('results.txt');
+    console.log('Calculating ascending numbers');
+    while (number<upper){
+        number++;
+        numStr = number.toString();
+        if ((numStr.substring(1, 2) >= numStr.substring(2, 3))) {
+            if ((numStr.substring(2, 3) >= numStr.substring(3, 4))) {
+                if ((numStr.substring(3, 4) >= numStr.substring(4, 5))) {
+                    if ((numStr.substring(4, 5) >= numStr.substring(5, 6))) {
+                        if ((numStr.substring(5, 6) >= numStr.substring(6, 7))) {
+                            if ((numStr.substring(6, 7) >= numStr.substring(7, 8))) {
+                                if ((numStr.substring(7, 8) >= numStr.substring(8, 9))) {
+                                    total++;
+                                    resultsWrite.write(numStr.substr(1) + '\n');
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }            
+    }
+    resultsWrite.end;
+    console.log('Finished finding all descending serials');
+    console.log('Total possible amounts of descending serials in a run = ' + total);
+}
+
+//ascend();
+descend();
+//binary();
 //trinary();
 //xyxyzzww();
 //quadDoubles();
