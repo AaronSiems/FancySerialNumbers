@@ -94,12 +94,12 @@ function oneOfAKind(){ //find one of a kinds (a very bad way to figure them out)
     console.log('Total possible amounts of quad doubles in a run = ' + total);
 }
 
-function quadDoubles() { //find quad doubles ie 11112222
+function doubleQuad() { //find quad doubles ie 11112222
     clearResults();
     var numStr = number.toString();
     resultsTxt();
     var resultsWrite = fs.createWriteStream('results.txt');
-    console.log('Calculating quad doubles');
+    console.log('Calculating double quads');
     while (number<upper){
         number++
         numStr = number.toString();
@@ -119,8 +119,8 @@ function quadDoubles() { //find quad doubles ie 11112222
         }
     }
     resultsWrite.end;
-    console.log('Finished finding all quad doubles');
-    console.log('Total possible amounts of quad doubles in a run = ' + total);
+    console.log('Finished finding all double quads');
+    console.log('Total possible amounts of double quads in a run = ' + total);
 }
 
 function xyxyzzww() { //find this type of pattern (would look like 12123344 or 44331212)
@@ -239,7 +239,7 @@ function descend()  {//numbers that only go down ie 99874321 or 99775540
     var numStr = number.toString();
     resultsTxt();
     var resultsWrite = fs.createWriteStream('results.txt');
-    console.log('Calculating ascending numbers');
+    console.log('Calculating descending numbers');
     while (number<upper){
         number++;
         numStr = number.toString();
@@ -265,11 +265,35 @@ function descend()  {//numbers that only go down ie 99874321 or 99775540
     console.log('Total possible amounts of descending serials in a run = ' + total);
 }
 
-//ascend();
-descend();
-//binary();
-//trinary();
-//xyxyzzww();
-//quadDoubles();
-//oneOfAKind();
-//quadDoubles();
+
+function xyyx()  {//numbers that follow an xzywywxz pattern ie 12343412
+    clearResults();
+    var numStr = number.toString();
+    resultsTxt();
+    var resultsWrite = fs.createWriteStream('results.txt');
+    console.log('Calculating xyyx numbers');
+    while (number<upper){
+        number++;
+        numStr = number.toString();
+        if ((numStr.substring(1, 3) == numStr.substring(7, 9))) {
+            if ((numStr.substring(3, 5) == numStr.substring(5, 7))) {
+                total++;
+                resultsWrite.write(numStr.substr(1) + '\n');
+            }
+        }
+    }
+    console.log('Finished finding all xyyx serials');
+    console.log('Total possible amounts of xyyx serials in a run = ' + total);
+}
+
+
+
+xyyx(); //9,999
+//ascend(); //24,309
+//descend(); //24,309
+//binary(); //11,430
+//trinary(); //695,520
+//xyxyzzww(); //18,999
+//doubleQuad(); //99
+//oneOfAKind(); //9
+//quadDoubles(); //9,999
