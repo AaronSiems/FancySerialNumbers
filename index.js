@@ -286,9 +286,31 @@ function xyyx()  {//numbers that follow an xzywywxz pattern ie 12343412
     console.log('Total possible amounts of xyyx serials in a run = ' + total);
 }
 
+function radar() { //radar numbers go wxyzzyxw, palindromes 
+    function reverse(s){ //only need this function for radars
+        return s.split("").reverse().join("");
+    }
+
+    clearResults();
+    var numStr = number.toString();
+    resultsTxt();
+    var resultsWrite = fs.createWriteStream('results.txt');
+    console.log('Calculating radars');
+    while (number<upper){
+        number++;
+        numStr = number.toString();
+        if ((numStr.substring(1, 5) == reverse(numStr.substring(5, 9)))) {
+            total++;
+            resultsWrite.write(numStr.substr(1) + '\n');
+        }
+    }
+    console.log('Finished finding all radar serials');
+    console.log('Total possible amounts of radar serials in a run = ' + total);
+}
 
 
-xyyx(); //9,999
+radar(); //9,999
+//xyyx(); //9,999
 //ascend(); //24,309
 //descend(); //24,309
 //binary(); //11,430
